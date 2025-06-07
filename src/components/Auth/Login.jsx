@@ -1,47 +1,51 @@
 import React, { useState } from "react";
 
-const Login = ({handlelogin}) => {
-
+const Login = ({ handlelogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const submitHandler = (e) => {
-    e.preventDefault();
-    handlelogin(email, password);
-    
-    setEmail("");
-    setPassword("");
-  };
+
+const submitHandler = (e) => {
+  e.preventDefault();
+  const isValid = handlelogin(email, password);
+  if (!isValid) {
+    alert("Invalid email or password!");
+  }
+  setEmail("");
+  setPassword("");
+};
+
+
   return (
-    <div className="flex justify-center items-center h-screen bg-green-50">
-      <div className="border-2  p-20 rounded-3xl  border-emerald-300 bg-black">
-        <form
-          action=""
-          onSubmit={submitHandler}
-          className="flex flex-col justify-evenly items-center h-96 w-96"
-        >
+    <div className="flex justify-center items-center h-screen bg-[#222831]">
+      <div className="bg-[#393E46] p-10 rounded-2xl shadow-xl w-[400px] border border-[#00ADB5] ring-1 ring-[#00ADB5]">
+        <form onSubmit={submitHandler} className="flex flex-col gap-6">
+          <h2 className="text-[#EEEEEE] text-2xl text-center font-semibold">
+             Login
+          </h2>
+
           <input
-            className="border-2 rounded-full border-emerald-300 py-2 text-center outline-none text-xl bg-transparent text-white placeholder:text-white"
+            className="w-full text-[#EEEEEE] placeholder:text-[#CCCCCC] py-2 px-4 rounded-md outline-none border border-[#00ADB5] bg-transparent focus:ring-2 focus:ring-[#00ADB5]"
             type="email"
-            placeholder="enter your email"
-            name="email"
+            placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
+
           <input
-            className="border-2 rounded-full border-emerald-300 py-2 text-center outline-none text-xl bg-transparent text-white placeholder:text-white"
+            className="w-full text-[#EEEEEE] placeholder:text-[#CCCCCC] py-2 px-4 rounded-md outline-none border border-[#00ADB5] bg-transparent focus:ring-2 focus:ring-[#00ADB5]"
             type="password"
-            placeholder="enter your password"
-            required
-            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter your password"
             value={password}
-            name="password"
+            onChange={(e) => setPassword(e.target.value)}
+            required
           />
+
           <button
-            className="border-2 rounded-full border-emerald-300 py-2 px-5 w-48 mb-0  text-center outline-none text-xl bg-transparent text-white placeholder:text-white hover:bg-emerald-300 hover:text-black transition-all duration-100"
             type="submit"
+            className="bg-transparent text-[#EEEEEE] border border-[#00ADB5] rounded-md py-2 px-6 hover:bg-[#00ADB5] hover:text-[#222831] transition-all duration-200"
           >
-            login
+            Login
           </button>
         </form>
       </div>

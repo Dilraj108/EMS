@@ -24,34 +24,36 @@ const App = () => {
       setIsLoggedIn(parsedUser.data);
     } catch (error) {
       console.error("Failed to parse loggedInUser:", error);
-      localStorage.removeItem("loggedInUser"); // clean invalid data
+      localStorage.removeItem("loggedInUser"); 
     }
   }
 }, []);
 
-  const handleLogin = (email, password) => {
-    if (email === "admin@example.com" && password === "123") {
-      console.log("admin");
-      setUser("admin");
-      localStorage.setItem("loggedInUser", JSON.stringify({ role: "admin" }));
-    } else if (employees && employees.length > 0) {
+const handleLogin = (email, password) => {
+  if (email === "admin@example.com" && password === "123") {
+    console.log("admin");
+    setUser("admin");
+    localStorage.setItem("loggedInUser", JSON.stringify({ role: "admin" }));
+    return true;
+  } else if (employees && employees.length > 0) {
+    const employee = employees.find(
+      (emp) => emp.email === email && emp.password === password
+    );
+    if (employee) {
       console.log("employee");
-      const employee = employees.find(
-        (emp) => emp.email === email && emp.password === password
+      setIsLoggedIn(employee);
+      setUser("employee");
+      localStorage.setItem(
+        "loggedInUser",
+        JSON.stringify({ role: "employee", data: employee })
       );
-      if (employee) {
-        console.log("employee");
-        setIsLoggedIn(employee);
-        setUser("employee");
-        localStorage.setItem(
-          "loggedInUser",
-          JSON.stringify({ role: "employee", data: employee })
-        );
-      }
-    } else {
-      console.log("invalid");
+      return true;
     }
-  };
+  }
+
+  return false;
+};
+
 
   return (
     <>

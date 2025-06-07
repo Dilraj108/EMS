@@ -29,7 +29,7 @@ const CreateTask = () => {
               taskDescription,
               taskDate,
               category,
-              active: true,
+              active: false,
               newTask: true,
               completed: false,
               failed: false,
@@ -38,7 +38,6 @@ const CreateTask = () => {
           taskCounts: {
             ...emp.taskCounts,
             newTask: emp.taskCounts.newTask + 1,
-            active: emp.taskCounts.active + 1,
           },
         };
       }
@@ -55,75 +54,77 @@ const CreateTask = () => {
   };
 
   return (
-    <div className="p-5 mt-7 rounded bg-gray-400">
+    <div className="p-6 mt-7 rounded-xl bg-[#393E46] text-[#EEEEEE] w-full shadow-lg">
+      <h2 className="text-xl font-semibold mb-4">Create New Task</h2>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-wrap items-start justify-between w-full"
+        className="flex flex-wrap justify-between gap-6"
       >
-        <div className="w-1/2">
-          <div>
-            {" "}
-            <h3 className="text-sm text-white mb-0.5">Task Title</h3>
+        {/* Left Side */}
+        <div className="w-full md:w-[48%]">
+          <div className="mb-4">
+            <label className="block mb-1 text-sm">Task Title</label>
             <input
               value={taskTitle}
               onChange={(e) => setTaskTitle(e.target.value)}
-              className="text-sm py-1  w-4/5 rounded outline-none bg-transparent px-2 border-[1px] border-gray-800 mb-4 "
               type="text"
-              placeholder="create task"
+              placeholder="Enter task title"
+              className="w-full px-3 py-2 rounded bg-[#222831] border border-[#00ADB5] text-[#EEEEEE] outline-none focus:ring-2 focus:ring-[#00ADB5]"
             />
           </div>
 
-          <div>
-            {" "}
-            <h3 className="text-sm text-white mb-0.5">date</h3>
+          <div className="mb-4">
+            <label className="block mb-1 text-sm">Date</label>
             <input
               value={taskDate}
               onChange={(e) => setTaskDate(e.target.value)}
-              className="text-sm py-1  w-4/5 rounded outline-none bg-transparent px-2 border-[1px] border-gray-800 mb-4 "
               type="date"
+              className="w-full px-3 py-2 rounded bg-[#222831] border border-[#00ADB5] text-[#EEEEEE] outline-none focus:ring-2 focus:ring-[#00ADB5]"
             />
           </div>
-          <div>
-            {" "}
-            <h3 className="text-sm text-white mb-0.5">assign to</h3>
+
+          <div className="mb-4">
+            <label className="block mb-1 text-sm">Assign To</label>
             <select
               value={asignTo}
               onChange={(e) => setAsignTo(e.target.value)}
-              className="text-sm py-1  w-4/5 rounded outline-none bg-transparent px-2 border-[1px] border-gray-800 mb-4"
+              className="w-full px-3 py-2 rounded bg-[#222831] border border-[#00ADB5] text-[#EEEEEE] outline-none focus:ring-2 focus:ring-[#00ADB5]"
             >
-              <option value="">select employee</option>
-              {employees.map((emp, index) => {
-                return (
-                  <option key={index} value={emp.firstName}>
-                    {emp.firstName}
-                  </option>
-                );
-              })}
+              <option value="">Select Employee</option>
+              {employees.map((emp, index) => (
+                <option key={index} value={emp.firstName}>
+                  {emp.firstName}
+                </option>
+              ))}
             </select>
           </div>
-          <div>
-            <h3 className="text-sm text-white mb-0.5">category</h3>
+
+          <div className="mb-4">
+            <label className="block mb-1 text-sm">Category</label>
             <input
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="text-sm py-1  w-4/5 rounded outline-none bg-transparent px-2 border-[1px] border-gray-800 mb-4 "
               type="text"
-              placeholder="dev app"
+              placeholder="e.g. Web Dev"
+              className="w-full px-3 py-2 rounded bg-[#222831] border border-[#00ADB5] text-[#EEEEEE] outline-none focus:ring-2 focus:ring-[#00ADB5]"
             />
           </div>
         </div>
-        <div className="w-2/5 flex flex-col items-start ">
-          <h3 className="text-sm text-white mb-0.5">description</h3>
+
+        {/* Right Side */}
+        <div className="w-full md:w-[48%] flex flex-col">
+          <label className="mb-1 text-sm">Description</label>
           <textarea
             value={taskDescription}
             onChange={(e) => setTaskDescription(e.target.value)}
-            className="w-full h-44 text-sm py-2 px-4 rounded outline-none bg-transparent border-[1px] border-gray-800 "
-            name=""
-            id=""
+            className="w-full h-44 px-3 py-2 rounded bg-[#222831] border border-[#00ADB5] text-[#EEEEEE] outline-none resize-none focus:ring-2 focus:ring-[#00ADB5]"
           ></textarea>
 
-          <button className="bg-emerald-500 py-3 hover:bg-emerald-600 rounded text-sm mt-4 w-full">
-            create task
+          <button
+            type="submit"
+            className="bg-[#00ADB5] text-[#EEEEEE] mt-5 py-3 rounded hover:opacity-90 transition"
+          >
+            Create Task
           </button>
         </div>
       </form>

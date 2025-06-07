@@ -57,15 +57,16 @@ const AddEmployee = ({ closeForm }) => {
   };
 
   return (
-    <div className="p-5 mt-7 rounded bg-red-400 w-full">
+    <div className="p-5 mt-2 rounded-xl  bg-[#393E46] text-[#EEEEEE] w-full shadow-md">
       <h2 className="text-xl font-bold mb-3">Add Employee</h2>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-3 bg-amber-200 p-4 rounded"
+        className="flex flex-col gap-4 bg-[#222831] p-5 rounded-xl"
       >
         <div>
-          <label htmlFor="firstName">Name:</label>
-          <br />
+          <label htmlFor="firstName" className="block mb-1 text-sm font-medium">
+            Name:
+          </label>
           <input
             type="text"
             name="firstName"
@@ -73,13 +74,14 @@ const AddEmployee = ({ closeForm }) => {
             value={formData.firstName}
             onChange={handleChange}
             required
-            className="px-2 py-1 w-full"
+            className="px-3 py-2 w-full rounded bg-[#393E46] text-[#EEEEEE] border border-[#00ADB5] focus:outline-none focus:ring-2 focus:ring-[#00ADB5]"
           />
         </div>
 
         <div>
-          <label htmlFor="email">Email:</label>
-          <br />
+          <label htmlFor="email" className="block mb-1 text-sm font-medium">
+            Email:
+          </label>
           <input
             type="email"
             name="email"
@@ -87,13 +89,14 @@ const AddEmployee = ({ closeForm }) => {
             value={formData.email}
             onChange={handleChange}
             required
-            className="px-2 py-1 w-full"
+            className="px-3 py-2 w-full rounded bg-[#393E46] text-[#EEEEEE] border border-[#00ADB5] focus:outline-none focus:ring-2 focus:ring-[#00ADB5]"
           />
         </div>
 
         <div>
-          <label htmlFor="password">Password:</label>
-          <br />
+          <label htmlFor="password" className="block mb-1 text-sm font-medium">
+            Password:
+          </label>
           <input
             type="password"
             name="password"
@@ -101,13 +104,13 @@ const AddEmployee = ({ closeForm }) => {
             value={formData.password}
             onChange={handleChange}
             required
-            className="px-2 py-1 w-full"
+            className="px-3 py-2 w-full rounded bg-[#393E46] text-[#EEEEEE] border border-[#00ADB5] focus:outline-none focus:ring-2 focus:ring-[#00ADB5]"
           />
         </div>
 
         <button
           type="submit"
-          className="bg-white text-black px-4 py-2 rounded hover:bg-gray-100"
+          className="bg-[#00ADB5] text-[#EEEEEE] px-4 py-2 rounded hover:opacity-90 transition"
         >
           Add Employee
         </button>

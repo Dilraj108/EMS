@@ -1,10 +1,10 @@
 import React from "react";
-import AcceptTask from "./acceptTask";
+import AcceptTask from "./AcceptTask";
 import NewTask from "./NewTask";
 import CompleteTask from "./CompleteTask";
 import FailedTask from "./FailedTask";
 
-const TaskList = ({ data,onMarkCompleted }) => {
+const TaskList = ({ data,onMarkCompleted,onMarkFailed,onMarkAccepted }) => {
   console.log(data.tasks);
   return (
     <div
@@ -13,7 +13,7 @@ const TaskList = ({ data,onMarkCompleted }) => {
     >
       {data.tasks.map((task,idx) => {
         if (task.active) {
-          return <AcceptTask key={idx} data={task} index={idx} onMarkCompleted={onMarkCompleted} />;
+          return <AcceptTask key={idx} data={task} index={idx} onMarkCompleted={onMarkCompleted} onMarkFailed={onMarkFailed} />;
         }
         if (task.completed) {
           return <CompleteTask key={idx} data={task} />;
@@ -21,8 +21,8 @@ const TaskList = ({ data,onMarkCompleted }) => {
         if (task.failed) {
           return <FailedTask key={idx} data={task}  />;
         }
-        if (task.NewTask) {
-          return <NewTask key={idx} data={task} />;
+        if (task.newTask) {
+          return <NewTask key={idx} data={task} index={idx} onMarkAccepted={onMarkAccepted}/>;
         }
       })}
     </div>
